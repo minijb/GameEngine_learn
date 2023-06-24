@@ -3,7 +3,10 @@
 //for application use
 
 #include "Engine/Application.h"
+#include "Engine/Log.h"
 
-//enter point
 
+
+//enter point-----------------
 #include "Engine/EnterPoint.h"
+//----------------------------
