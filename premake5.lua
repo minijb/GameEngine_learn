@@ -26,13 +26,14 @@ project "GameEngine"
 
   includedirs
   {
-    "%{prj.name}/vendor/spdlog/include"
+    "%{prj.name}/vendor/spdlog/include",
+    "%{prj.name}/src"
   }
 
   filter "system:windows"
     cppdialect "C++17"
     staticruntime "on"
-    systemversion "10.0.22000.0"
+    systemversion "latest"
 
     defines
     {
@@ -85,7 +86,7 @@ project "SandBox"
   filter "system:windows"
     cppdialect "C++17"
     staticruntime "on"
-    systemversion "10.0.22000.0"
+    systemversion "latest"
 
     defines
     {
