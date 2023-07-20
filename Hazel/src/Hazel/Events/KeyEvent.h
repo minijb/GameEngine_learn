@@ -2,11 +2,9 @@
 
 #include "Event.h"
 
-#include "pch.h"
+namespace Hazel {
 
-namespace Engine {
-
-	class ENGINE_API KeyEvent : public Event
+	class HAZEL_API KeyEvent : public Event
 	{
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
@@ -19,7 +17,7 @@ namespace Engine {
 		int m_KeyCode;
 	};
 
-	class ENGINE_API KeyPressedEvent : public KeyEvent
+	class HAZEL_API KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
@@ -39,7 +37,7 @@ namespace Engine {
 		int m_RepeatCount;
 	};
 
-	class ENGINE_API KeyReleasedEvent : public KeyEvent
+	class HAZEL_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(int keycode)

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Engine/Core.h"
-#include "pch.h"
+#include "hzpch.h"
+#include "Hazel/Core.h"
 
-namespace Engine {
+namespace Hazel {
 
 	// Events in Hazel are currently blocking, meaning when an event occurs it
 	// immediately gets dispatched and must be dealt with right then an there.
@@ -35,7 +35,7 @@ namespace Engine {
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-	class ENGINE_API Event
+	class HAZEL_API Event
 	{
 		friend class EventDispatcher;
 	public:

@@ -7,12 +7,13 @@
 #include <functional>
 
 #include <string>
-#include <vector>
 #include <sstream>
+#include <vector>
 #include <unordered_map>
 #include <unordered_set>
 
-#ifdef E_PLATFROM_WINDOWS
+#include "Hazel/Log.h"
+
+#ifdef HZ_PLATFORM_WINDOWS
 	#include <Windows.h>
-	
 #endif

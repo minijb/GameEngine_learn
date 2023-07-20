@@ -10,16 +10,22 @@ workspace "GameEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
-project "GameEngine"
-  location "GameEngine"
+IncludeDir = {}
+IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
+
+include "Hazel/vendor/GLFW"
+
+
+project "Hazel"
+  location "Hazel"
   kind "SharedLib"
   language "C++"
 
   targetdir ("bin/".. outputdir .. "/%{prj.name}")
   objdir ("bin-int/".. outputdir .. "/%{prj.name}")
   
-  pchheader "pch.h"
-  pchsource "%{prj.name}/src/pch.cpp"
+  pchheader "hzpch.h"
+  pchsource "%{prj.name}/src/hzpch.cpp"
 
   files
   {
@@ -30,7 +36,14 @@ project "GameEngine"
   includedirs
   {
     "%{prj.name}/vendor/spdlog/include",
-    "%{prj.name}/src"
+    "%{prj.name}/src",
+    "%{IncludeDir.GLFW}"
+  }
+
+  links
+  {
+    "GLFW",
+    "opengl32.lib"
   }
 
   filter "system:windows"
@@ -40,8 +53,8 @@ project "GameEngine"
 
     defines
     {
-      "E_BUILD_DLL",
-      "E_PLATFROM_WINDOWS",
+      "HZ_BUILD_DLL",
+      "HZ_PLATFORM_WINDOWS",
       "_DEBUG",
       "_CONSOLE"
     }
@@ -52,13 +65,13 @@ project "GameEngine"
     }
 
   filter "configurations:Debug"
-    defines "E_DEBUG"
+    defines "HZ_DEBUG"
     symbols "On"
   filter "configurations:Release"
-    defines "E_RELEASE"
+    defines "HZ_RELEASE"
     symbols "On"
   filter "configurations:Dist"
-    defines "E_DIST"
+    defines "HZ_DIST"
     symbols "On"
 
 project "SandBox"
@@ -77,13 +90,13 @@ project "SandBox"
 
   includedirs
   {
-    "GameEngine/vendor/spdlog/include",
-    "GameEngine/src"
+    "Hazel/vendor/spdlog/include",
+    "Hazel/src"
   }
 
   links
   {
-    "GameEngine"
+    "Hazel"
   }
 
   filter "system:windows"
@@ -93,17 +106,17 @@ project "SandBox"
 
     defines
     {
-      "E_PLATFROM_WINDOWS",
+      "HZ_PLATFORM_WINDOWS",
       "_DEBUG",
       "_CONSOLE"
     }
 
   filter "configurations:Debug"
-    defines "E_DEBUG"
+    defines "HZ_DEBUG"
     symbols "On"
   filter "configurations:Release"
-    defines "E_RELEASE"
+    defines "HZ_RELEASE"
     symbols "On"
   filter "configurations:Dist"
-    defines "E_DIST"
+    defines "HZ_DIST"
     symbols "On"
